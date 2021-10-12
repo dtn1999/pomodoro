@@ -75,8 +75,18 @@ const Home: NextPage = () => {
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
+                    flexDir="column"
                   >
-                    <Text> 17:59 </Text>
+                    <Text fontSize="6xl" fontWeight="bold" color="#D0D9F2">
+                      17:59
+                    </Text>
+                    <Text
+                      letterSpacing="0.4rem"
+                      textTransform="uppercase"
+                      color="#D0D9F2"
+                    >
+                      pause
+                    </Text>
                   </Box>
 
                   <CircularProgress
