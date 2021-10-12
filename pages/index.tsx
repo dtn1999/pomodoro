@@ -19,6 +19,11 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
 } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
 
@@ -132,27 +137,105 @@ const Home: NextPage = () => {
         </Flex>
       </Flex>
       {/*  Model  */}
-      <Modal closeOnOverlayClick={true} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        closeOnOverlayClick={true}
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+      >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            =
-            <Text>
-              {" "}
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores
-              libero nesciunt, accusantium nam veritatis quia laboriosam numquam
-              repellat distinctio omnis reiciendis nemo ducimus saepe, fugit
-              harum minus provident. Ad, reiciendis?
+          <ModalHeader>Settings</ModalHeader>
+          <ModalCloseButton color="#737896" />
+          <ModalBody pb={6} borderTop="1px" borderTopColor="gray.100">
+            <Text
+              fontSize="large"
+              fontStyle="bold"
+              textTransform="uppercase"
+              letterSpacing="0.2rem"
+            >
+              Time (Minutes)
             </Text>
+            <Flex direction="row" experimental_spaceX="2" py="2rem">
+              {/*  pomodoro */}
+              <Box>
+                <Text fontWeight="thin" color="#737896">
+                  pomodoro
+                </Text>
+                <NumberInput
+                  defaultValue={15}
+                  min={10}
+                  max={20}
+                  bgColor="#D0D9F2"
+                  borderRadius="md"
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </Box>
+              {/*  short break*/}
+              <Box>
+                <Text fontWeight="thin" color="#737896">
+                  short break{" "}
+                </Text>
+                <NumberInput
+                  defaultValue={15}
+                  min={10}
+                  max={20}
+                  bgColor="#D0D9F2"
+                  borderRadius="md"
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </Box>
+              {/*  long break */}
+              <Box>
+                <Text fontWeight="thin" color="#737896">
+                  long break
+                </Text>
+                <NumberInput
+                  defaultValue={15}
+                  min={10}
+                  max={20}
+                  bgColor="#D0D9F2"
+                  borderRadius="md"
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </Box>
+            </Flex>
           </ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Save
+          <ModalFooter
+            position="absolute"
+            display="flex"
+            flexDir="row"
+            justifyContent="center"
+            bottom="-8"
+            left="0"
+            right="0"
+          >
+            <Button
+              colorScheme="blue"
+              mr={3}
+              textTransform="capitalize"
+              borderRadius="full"
+              px="4rem"
+              bgColor="#F26D6D"
+            >
+              apply
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
