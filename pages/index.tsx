@@ -29,6 +29,7 @@ import { SettingsIcon } from "@chakra-ui/icons";
 
 import type { NextPage } from "next";
 import React from "react";
+import Timer from "../components/Timer";
 
 const Home: NextPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -70,70 +71,13 @@ const Home: NextPage = () => {
                 justifyContent="center"
                 alignItems="center"
               >
-                <Box
-                  bg="#fff"
-                  display="flex"
-                  width="20rem"
-                  height="20rem"
-                  borderRadius="full"
-                  mt="4rem"
-                  shadow="timer"
-                  bgColor="#1E2140"
-                  p="1rem"
-                >
-                  <Box
-                    position="relative"
-                    overflow="hidden"
-                    bg="#fff"
-                    flex="1"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    borderRadius="full"
-                    bgColor="#111426"
-                    p="0rem"
-                  >
-                    <Box
-                      position="absolute"
-                      top="0"
-                      left="0"
-                      right="0"
-                      bottom="0"
-                      bg="transparent"
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      flexDir="column"
-                    >
-                      <Text fontSize="6xl" fontWeight="bold" color="#D0D9F2">
-                        17:59
-                      </Text>
-                      <Text
-                        letterSpacing="0.4rem"
-                        textTransform="uppercase"
-                        mt="1rem"
-                        color="#D0D9F2"
-                      >
-                        pause
-                      </Text>
-                    </Box>
-
-                    <CircularProgress
-                      size="100%"
-                      value={50}
-                      thickness="2px"
-                      color="#F26D6D"
-                      bgColor=""
-                      trackColor="#111426"
-                    />
-                  </Box>
-                </Box>
+                <Timer />
               </TabPanel>
               <TabPanel>
-                <p>two!</p>
+                <Timer />
               </TabPanel>
               <TabPanel>
-                <p>three!</p>
+                <Timer />
               </TabPanel>
             </TabPanels>
           </Tabs>
