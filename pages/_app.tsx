@@ -4,7 +4,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   shadows: {
-    timer: "-30px -30px 10px 20px rgba(40,48,89,0.35)",
+    timer: "-88px -36px 105px 52px rgba(40,48,89,0.35)",
   },
 });
 

@@ -49,8 +49,12 @@ const Home: NextPage = () => {
           </Heading>
           {/*  render the tab panel */}
           <Tabs variant="solid-rounded">
-            <TabList borderRadius="full" bgColor="#111426">
-              <Tab _selected={{ color: "#111426", bg: "#F26D6D" }}>
+            <TabList borderRadius="full" bgColor="#111426" p="0.25rem">
+              <Tab
+                fontSize="sm"
+                px="1.5rem"
+                _selected={{ color: "#111426", bg: "#F26D6D" }}
+              >
                 pomodoro
               </Tab>
               <Tab _selected={{ color: "#111426", bg: "#F26D6D" }}>
@@ -107,6 +111,7 @@ const Home: NextPage = () => {
                       <Text
                         letterSpacing="0.4rem"
                         textTransform="uppercase"
+                        mt="1rem"
                         color="#D0D9F2"
                       >
                         pause
@@ -118,6 +123,8 @@ const Home: NextPage = () => {
                       value={50}
                       thickness="2px"
                       color="#F26D6D"
+                      bgColor=""
+                      trackColor="#111426"
                     />
                   </Box>
                 </Box>
