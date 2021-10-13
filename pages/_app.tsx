@@ -1,8 +1,9 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import React from "react";
 
-const theme = extendTheme({
+const baseTheme = extendTheme({
   shadows: {
     timer: "-88px -36px 105px 52px rgba(40,48,89,0.35)",
   },
@@ -17,6 +18,17 @@ const theme = extendTheme({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [theme, setTheme] = React.useState(baseTheme);
+
+  const handlePrimaryColorChange = React.useCallback((newPrimaryColor) => {
+    setTheme({
+      ...theme,
+      colors: {
+        ...theme.colors,
+        primary: newPrimaryColor,
+      },
+    });
+  }, []);
   return (
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />
