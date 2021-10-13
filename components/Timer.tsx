@@ -36,7 +36,7 @@ const Timer: React.FC<Props> = React.memo(({ duration, nextStep }) => {
     return () => {
       clearInterval(interval);
     };
-  }, [duration]);
+  }, [duration, timeElapsed]);
   return (
     <Box
       bg="#fff"
