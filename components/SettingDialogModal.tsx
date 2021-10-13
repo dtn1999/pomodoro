@@ -65,7 +65,7 @@ const SettingDialogModal: React.FC<Props> = React.memo(
                 <NumberInput
                   value={timeConfig.pomodoro}
                   onChange={(a, value) => {
-                    setTimeConfig({ ...timeConfig, break: value });
+                    setTimeConfig({ ...timeConfig, pomodoro: value });
                   }}
                   min={10}
                   bgColor="#D0D9F2"

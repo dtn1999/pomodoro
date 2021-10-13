@@ -43,7 +43,7 @@ const Home: NextPage = () => {
     break: 5,
     pomodoro: 25,
   });
-  const [activeTabIndex, setActiveTabIndex] = React.useState<1 | 2>(1);
+  const [activeTabIndex, setActiveTabIndex] = React.useState<number>(1);
   const handleTabsChange = React.useCallback(
     (index) => {
       setActiveTabIndex(index);
