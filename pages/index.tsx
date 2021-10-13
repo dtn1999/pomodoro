@@ -25,8 +25,8 @@ const Home: NextPage = React.memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [timeConfig, setTimeConfig] = React.useState<Config>({
-    break: 1,
-    pomodoro: 1,
+    break: 5,
+    pomodoro: 25,
     color: "#F26D6D",
   });
   const [activeTabIndex, setActiveTabIndex] = React.useState<number>(0);

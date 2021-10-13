@@ -16,7 +16,6 @@ import {
   NumberInputField,
   NumberInputStepper,
   Text,
-  useRadio,
   useRadioGroup,
 } from "@chakra-ui/react";
 import React from "react";
