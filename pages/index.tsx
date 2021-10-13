@@ -75,6 +75,7 @@ const Home: NextPage = () => {
           <Tabs
             variant="solid-rounded"
             isFitted
+            isLazy
             index={activeTabIndex}
             onChange={handleTabsChange}
           >
