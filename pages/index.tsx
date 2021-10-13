@@ -154,7 +154,7 @@ const Home: NextPage = React.memo(() => {
       {/*  Model  */}
       <SettingDialogModal
         initialValue={userConfig || defaultConfig}
-        onApply={setUserConfig}
+        onApply={handleSettingsApply}
         isOpen={isOpen}
         onClose={onClose}
       />

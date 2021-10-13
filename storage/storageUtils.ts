@@ -1,5 +1,7 @@
 import { Config } from "../types/types"
 
+const STORAGE_KEY = "@pomodoro";
+
 export const defaultConfig:Config = {
     break: 5,
     pomodoro: 25,
@@ -7,18 +9,18 @@ export const defaultConfig:Config = {
   };
 
 export const loadUserAppConfig = ()=>{
-    const storedConfig = localStorage.getItem("@pomodoro");
+    const storedConfig = localStorage.getItem(STORAGE_KEY);
+    console.log("storedConfig ", storedConfig)
     if( !storedConfig ){
+        console.log("here !! ")
         return defaultConfig;
     }
+    console.log("storedConfig ", JSON.parse(storedConfig))
     return JSON.parse(storedConfig) as Config;
 }
 
 export const saveUserAppConfig = (userConfig:Config)=>{
-    console.log("save to localStorage" , userConfig)
-
     if(userConfig){
-        console.log("save to localStorage" , userConfig)
-        localStorage.setItem("@pomodoro", JSON.stringify(userConfig));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(userConfig));
     }
 }

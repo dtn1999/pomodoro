@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import React from "react";
 import { ThemeExchanger } from "../context/ThemeExchangerContext";
+import { loadUserAppConfig } from "../storage/storageUtils";
 
 const baseTheme = extendTheme({
   shadows: {
@@ -30,6 +31,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       },
     });
   }, []);
+
+  // load user color preference
+  React.useEffect(() => {
+    const userConfig = loadUserAppConfig();
+    handlePrimaryColorChange(userConfig.color);
+  }, []);
+
   return (
     <ChakraProvider theme={theme}>
       <ThemeExchanger.Provider value={{ handlePrimaryColorChange }}>
