@@ -39,26 +39,26 @@ const Timer: React.FC<Props> = ({ duration, nextStep, onCompletion }) => {
   }, [duration, timeElapsed]);
   return (
     <Box
-      bg="#fff"
+      bg="white"
       display="flex"
       width="20rem"
       height="20rem"
       borderRadius="full"
       mt="4rem"
       shadow="timer"
-      bgColor="#1E2140"
+      bgColor="bgColor"
       p="1rem"
     >
       <Box
         position="relative"
         overflow="hidden"
-        bg="#fff"
+        bg="white"
         flex="1"
         display="flex"
         justifyContent="center"
         alignItems="center"
         borderRadius="full"
-        bgColor="#111426"
+        bgColor="dark"
         p="0rem"
       >
         <Box
@@ -73,14 +73,14 @@ const Timer: React.FC<Props> = ({ duration, nextStep, onCompletion }) => {
           alignItems="center"
           flexDir="column"
         >
-          <Text fontSize="6xl" fontWeight="bold" color="#D0D9F2">
+          <Text fontSize="6xl" fontWeight="bold" color="text">
             {remainingTime}
           </Text>
           <Text
             letterSpacing="0.4rem"
             textTransform="uppercase"
             mt="1rem"
-            color="#D0D9F2"
+            color="text"
           >
             {nextStep}
           </Text>
@@ -90,9 +90,9 @@ const Timer: React.FC<Props> = ({ duration, nextStep, onCompletion }) => {
           size="100%"
           value={progression}
           thickness="2px"
-          color="#F26D6D"
+          color="primary"
           bgColor=""
-          trackColor="#111426"
+          trackColor="dark"
         />
       </Box>
       <ReactHowler

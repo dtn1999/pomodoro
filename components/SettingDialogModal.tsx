@@ -45,7 +45,7 @@ const SettingDialogModal: React.FC<Props> = React.memo(
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Settings</ModalHeader>
-          <ModalCloseButton color="#737896" />
+          <ModalCloseButton color="darkKText" />
           <ModalBody pb={6} borderTop="1px" borderTopColor="gray.100">
             <Text
               fontSize="large"
@@ -58,7 +58,7 @@ const SettingDialogModal: React.FC<Props> = React.memo(
             <Flex direction="row" experimental_spaceX="2" py="2rem">
               {/*  pomodoro */}
               <Box>
-                <Text fontWeight="thin" color="#737896">
+                <Text fontWeight="thin" color="darkKText">
                   pomodoro
                 </Text>
                 <NumberInput
@@ -67,7 +67,7 @@ const SettingDialogModal: React.FC<Props> = React.memo(
                     setTimeConfig({ ...timeConfig, pomodoro: value });
                   }}
                   min={2}
-                  bgColor="#D0D9F2"
+                  bgColor="text"
                   borderRadius="md"
                 >
                   <NumberInputField />
@@ -79,7 +79,7 @@ const SettingDialogModal: React.FC<Props> = React.memo(
               </Box>
               {/*  short break*/}
               <Box>
-                <Text fontWeight="thin" color="#737896">
+                <Text fontWeight="thin" color="darkKText">
                   break
                 </Text>
                 <NumberInput
@@ -88,7 +88,7 @@ const SettingDialogModal: React.FC<Props> = React.memo(
                     setTimeConfig({ ...timeConfig, break: value });
                   }}
                   min={1}
-                  bgColor="#D0D9F2"
+                  bgColor="text"
                   borderRadius="md"
                 >
                   <NumberInputField />
@@ -116,8 +116,14 @@ const SettingDialogModal: React.FC<Props> = React.memo(
               textTransform="capitalize"
               borderRadius="full"
               px="4rem"
-              bgColor="#F26D6D"
+              bgColor="primary"
               onClick={handleApply}
+              _hover={{
+                backgroundColor: "text",
+                border: "2px",
+                borderColor: "primary",
+                color: "primary",
+              }}
             >
               apply
             </Button>
