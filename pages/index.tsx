@@ -26,10 +26,14 @@ import {
   NumberIncrementStepper,
 } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
+import { Howl, Howler } from "howler";
 
 import type { NextPage } from "next";
 import React from "react";
 import Timer from "../components/Timer";
+
+Howler.mute(false);
+Howler.volume(1);
 
 const Home: NextPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

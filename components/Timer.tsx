@@ -1,7 +1,7 @@
 import { Box, Text, CircularProgress } from "@chakra-ui/react";
 import { differenceInMinutes, format, differenceInSeconds } from "date-fns";
 import useSound from "use-sound";
-import beeper from "../public/beeper-working-time.mp3";
+import ReactHowler from "react-howler";
 
 import React from "react";
 
@@ -14,20 +14,25 @@ const Timer: React.FC<Props> = React.memo(({ duration, nextStep }) => {
   const startTime = React.useMemo(() => new Date(), [duration]);
   const [remainingTime, setRemainingTime] = React.useState<string>("");
   const [progression, setProgression] = React.useState<number>(100);
-  const [play] = useSound(beeper);
+  const [playing, setPlaying] = React.useState<boolean>(false);
+  const [timeElapsed, setTimeElapsed] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      const min = duration - 1 - differenceInMinutes(new Date(), startTime);
-      const sec = 59 - (differenceInSeconds(new Date(), startTime) % 60);
-      setRemainingTime(`${min}:${sec < 10 ? "0" + sec : sec}`);
-      /*  update progression  */
-      const updatedProgression = ((min * 60 + sec) / (duration * 60)) * 100;
-      setProgression(updatedProgression);
+      if (!timeElapsed) {
+        const min = duration - 1 - differenceInMinutes(new Date(), startTime);
+        const sec = 59 - (differenceInSeconds(new Date(), startTime) % 60);
+        setRemainingTime(`${min}:${sec < 10 ? "0" + sec : sec}`);
+        /*  update progression  */
+        const updatedProgression = ((min * 60 + sec) / (duration * 60)) * 100;
+        setProgression(updatedProgression);
+        if (min === 0 && sec === 0) {
+          setPlaying(true);
+          setTimeElapsed(true);
+        }
+      }
     }, 1000);
-    if (progression == 0) {
-      play();
-    }
+
     return () => {
       clearInterval(interval);
     };
@@ -90,6 +95,11 @@ const Timer: React.FC<Props> = React.memo(({ duration, nextStep }) => {
           trackColor="#111426"
         />
       </Box>
+      <ReactHowler
+        src="/beeper-working-time.mp3"
+        playing={playing}
+        loop={false}
+      />
     </Box>
   );
 });
