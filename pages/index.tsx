@@ -27,7 +27,7 @@ const Home: NextPage = () => {
     break: 1,
     pomodoro: 1,
   });
-  const [activeTabIndex, setActiveTabIndex] = React.useState<number>(0);
+  const [activeTabIndex, setActiveTabIndex] = React.useState<number>(1);
   const handleTabsChange = React.useCallback(
     (index) => {
       setActiveTabIndex(index);
@@ -35,10 +35,10 @@ const Home: NextPage = () => {
     [activeTabIndex]
   );
   const handleTimerCompletion = React.useCallback(() => {
-    if (activeTabIndex === 0) {
-      setActiveTabIndex(1);
+    if (activeTabIndex === 1) {
+      setActiveTabIndex(2);
     } else {
-      setActiveTabIndex(0);
+      setActiveTabIndex(1);
     }
     setTimeConfig({ ...timeConfig });
   }, [timeConfig]);
@@ -59,8 +59,8 @@ const Home: NextPage = () => {
           {/*  render the tab panel */}
           <Tabs
             variant="solid-rounded"
-            isFitted
             isLazy
+            isFitted
             index={activeTabIndex}
             onChange={handleTabsChange}
           >
@@ -73,8 +73,7 @@ const Home: NextPage = () => {
               p="0.25rem"
             >
               <Tab
-                tabIndex={0}
-                isDisabled={activeTabIndex !== 0}
+                isDisabled={activeTabIndex !== 1}
                 fontSize="sm"
                 px="1.5rem"
                 _selected={{ color: "#111426", bg: "#F26D6D" }}
@@ -82,8 +81,7 @@ const Home: NextPage = () => {
                 pomodoro
               </Tab>
               <Tab
-                tabIndex={1}
-                isDisabled={activeTabIndex !== 1}
+                isDisabled={activeTabIndex !== 2}
                 fontSize="sm"
                 px="1.5rem"
                 _selected={{ color: "#111426", bg: "#F26D6D" }}
