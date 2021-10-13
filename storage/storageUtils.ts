@@ -10,12 +10,10 @@ export const defaultConfig:Config = {
 
 export const loadUserAppConfig = ()=>{
     const storedConfig = localStorage.getItem(STORAGE_KEY);
-    console.log("storedConfig ", storedConfig)
     if( !storedConfig ){
         console.log("here !! ")
         return defaultConfig;
     }
-    console.log("storedConfig ", JSON.parse(storedConfig))
     return JSON.parse(storedConfig) as Config;
 }
 
