@@ -1,6 +1,7 @@
 import { Box, Text, CircularProgress } from "@chakra-ui/react";
 import { differenceInMinutes, format, differenceInSeconds } from "date-fns";
 import useSound from "use-sound";
+import beeper from "../public/beeper-working-time.mp3";
 
 import React from "react";
 
@@ -13,6 +14,7 @@ const Timer: React.FC<Props> = React.memo(({ duration, nextStep }) => {
   const startTime = React.useMemo(() => new Date(), [duration]);
   const [remainingTime, setRemainingTime] = React.useState<string>("");
   const [progression, setProgression] = React.useState<number>(100);
+  const [play] = useSound(beeper);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -23,6 +25,9 @@ const Timer: React.FC<Props> = React.memo(({ duration, nextStep }) => {
       const updatedProgression = ((min * 60 + sec) / (duration * 60)) * 100;
       setProgression(updatedProgression);
     }, 1000);
+    if (progression == 0) {
+      play();
+    }
     return () => {
       clearInterval(interval);
     };
