@@ -1,10 +1,32 @@
 import { Box, Text, CircularProgress } from "@chakra-ui/react";
+import { differenceInMinutes, format, differenceInSeconds } from "date-fns";
+import useSound from "use-sound";
+
 import React from "react";
 
-interface Props {}
+interface Props {
+  duration: number;
+  nextStep: string;
+}
 
-const Timer: React.FC<Props> = ({}) => {
-  const [] = React.useState<number>();
+const Timer: React.FC<Props> = React.memo(({ duration, nextStep }) => {
+  const startTime = React.useMemo(() => new Date(), [duration]);
+  const [remainingTime, setRemainingTime] = React.useState<string>("");
+  const [progression, setProgression] = React.useState<number>(100);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const min = duration - 1 - differenceInMinutes(new Date(), startTime);
+      const sec = 59 - (differenceInSeconds(new Date(), startTime) % 60);
+      setRemainingTime(`${min}:${sec < 10 ? "0" + sec : sec}`);
+      /*  update progression  */
+      const updatedProgression = ((min * 60 + sec) / (duration * 60)) * 100;
+      setProgression(updatedProgression);
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [duration]);
   return (
     <Box
       bg="#fff"
@@ -42,7 +64,7 @@ const Timer: React.FC<Props> = ({}) => {
           flexDir="column"
         >
           <Text fontSize="6xl" fontWeight="bold" color="#D0D9F2">
-            17:59
+            {remainingTime}
           </Text>
           <Text
             letterSpacing="0.4rem"
@@ -50,13 +72,13 @@ const Timer: React.FC<Props> = ({}) => {
             mt="1rem"
             color="#D0D9F2"
           >
-            pause
+            {nextStep}
           </Text>
         </Box>
 
         <CircularProgress
           size="100%"
-          value={50}
+          value={progression}
           thickness="2px"
           color="#F26D6D"
           bgColor=""
@@ -65,6 +87,6 @@ const Timer: React.FC<Props> = ({}) => {
       </Box>
     </Box>
   );
-};
+});
 
 export default Timer;

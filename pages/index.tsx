@@ -71,13 +71,13 @@ const Home: NextPage = () => {
                 justifyContent="center"
                 alignItems="center"
               >
-                <Timer />
+                <Timer duration={1} nextStep="pause" />
               </TabPanel>
               <TabPanel>
-                <Timer />
+                <Timer duration={25} nextStep="pause" />
               </TabPanel>
               <TabPanel>
-                <Timer />
+                <Timer duration={25} nextStep="pause" />
               </TabPanel>
             </TabPanels>
           </Tabs>
