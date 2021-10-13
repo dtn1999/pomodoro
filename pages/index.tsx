@@ -38,7 +38,7 @@ const Home: NextPage = () => {
     if (activeTabIndex === 0) {
       setActiveTabIndex(1);
     } else {
-      setActiveTabIndex(2);
+      setActiveTabIndex(0);
     }
     setTimeConfig({ ...timeConfig });
   }, [timeConfig]);
@@ -73,7 +73,7 @@ const Home: NextPage = () => {
               p="0.25rem"
             >
               <Tab
-                isDisabled={activeTabIndex !== 1}
+                isDisabled={activeTabIndex !== 0}
                 fontSize="sm"
                 px="1.5rem"
                 _selected={{ color: "#111426", bg: "#F26D6D" }}
@@ -81,7 +81,7 @@ const Home: NextPage = () => {
                 pomodoro
               </Tab>
               <Tab
-                isDisabled={activeTabIndex !== 2}
+                isDisabled={activeTabIndex !== 1}
                 fontSize="sm"
                 px="1.5rem"
                 _selected={{ color: "#111426", bg: "#F26D6D" }}
