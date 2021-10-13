@@ -66,7 +66,7 @@ const SettingDialogModal: React.FC<Props> = React.memo(
                   onChange={(a, value) => {
                     setTimeConfig({ ...timeConfig, pomodoro: value });
                   }}
-                  min={10}
+                  min={2}
                   bgColor="#D0D9F2"
                   borderRadius="md"
                 >
@@ -87,7 +87,7 @@ const SettingDialogModal: React.FC<Props> = React.memo(
                   onChange={(a, value) => {
                     setTimeConfig({ ...timeConfig, break: value });
                   }}
-                  min={5}
+                  min={1}
                   bgColor="#D0D9F2"
                   borderRadius="md"
                 >
