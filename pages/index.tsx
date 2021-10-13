@@ -50,6 +50,13 @@ const Home: NextPage = () => {
     },
     [activeTabIndex]
   );
+  const handleTimerCompletion = React.useCallback(() => {
+    if (activeTabIndex === 1) {
+      setActiveTabIndex(2);
+      return;
+    }
+    setActiveTabIndex(1);
+  }, []);
   return (
     <>
       <Flex
@@ -102,10 +109,18 @@ const Home: NextPage = () => {
                 justifyContent="center"
                 alignItems="center"
               >
-                <Timer duration={timeConfig.pomodoro} nextStep="pause" />
+                <Timer
+                  duration={timeConfig.pomodoro}
+                  nextStep="break"
+                  onCompletion={handleTimerCompletion}
+                />
               </TabPanel>
               <TabPanel>
-                <Timer duration={timeConfig.break} nextStep="pause" />
+                <Timer
+                  duration={timeConfig.break}
+                  nextStep="pomodoro"
+                  onCompletion={handleTimerCompletion}
+                />
               </TabPanel>
             </TabPanels>
           </Tabs>
