@@ -24,8 +24,8 @@ Howler.volume(1);
 const Home: NextPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [timeConfig, setTimeConfig] = React.useState<Config>({
-    break: 5,
-    pomodoro: 25,
+    break: 1,
+    pomodoro: 1,
   });
   const [activeTabIndex, setActiveTabIndex] = React.useState<number>(0);
   const handleTabsChange = React.useCallback(
@@ -35,12 +35,13 @@ const Home: NextPage = () => {
     [activeTabIndex]
   );
   const handleTimerCompletion = React.useCallback(() => {
-    if (activeTabIndex === 1) {
-      setActiveTabIndex(2);
-      return;
+    if (activeTabIndex === 0) {
+      setActiveTabIndex(1);
+    } else {
+      setActiveTabIndex(0);
     }
-    setActiveTabIndex(1);
-  }, []);
+    setTimeConfig({ ...timeConfig });
+  }, [timeConfig]);
   return (
     <>
       <Flex
@@ -72,6 +73,7 @@ const Home: NextPage = () => {
               p="0.25rem"
             >
               <Tab
+                tabIndex={0}
                 isDisabled={activeTabIndex !== 0}
                 fontSize="sm"
                 px="1.5rem"
@@ -80,6 +82,7 @@ const Home: NextPage = () => {
                 pomodoro
               </Tab>
               <Tab
+                tabIndex={1}
                 isDisabled={activeTabIndex !== 1}
                 fontSize="sm"
                 px="1.5rem"
