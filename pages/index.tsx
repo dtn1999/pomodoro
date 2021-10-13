@@ -27,6 +27,7 @@ const Home: NextPage = React.memo(() => {
   const [timeConfig, setTimeConfig] = React.useState<Config>({
     break: 1,
     pomodoro: 1,
+    color: "#F26D6D",
   });
   const [activeTabIndex, setActiveTabIndex] = React.useState<number>(0);
   const handleTabsChange = React.useCallback(
@@ -123,6 +124,7 @@ const Home: NextPage = React.memo(() => {
       </Flex>
       {/*  Model  */}
       <SettingDialogModal
+        initialValue={timeConfig}
         onApply={setTimeConfig}
         isOpen={isOpen}
         onClose={onClose}

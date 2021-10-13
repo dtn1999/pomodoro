@@ -25,27 +25,34 @@ import ColorRadio from "./ColorRadio";
 
 interface Props {
   onApply: (config: Config) => void;
+  initialValue: Config;
   isOpen: boolean;
   onClose: () => void;
 }
 
 const SettingDialogModal: React.FC<Props> = React.memo(
-  ({ onApply, isOpen, onClose }) => {
+  ({ onApply, isOpen, onClose, initialValue }) => {
     const [timeConfig, setTimeConfig] = React.useState<Config>({
-      break: 5,
-      pomodoro: 25,
+      ...initialValue,
     });
     const handleApply = React.useCallback(() => {
       onApply({ ...timeConfig });
       onClose();
     }, [timeConfig]);
 
+    const handleColorChange = React.useCallback(
+      (nextColor: any) => {
+        setTimeConfig({ ...timeConfig, color: nextColor });
+      },
+      [timeConfig]
+    );
+
     // Custom color selection
     const options = ["#F26D6D", "#72F2F2", "#D080F2"];
     const { getRootProps, getRadioProps } = useRadioGroup({
       name: "framework",
-      defaultValue: "react",
-      onChange: console.log,
+      value: timeConfig.color,
+      onChange: handleColorChange,
     });
     const group = getRootProps();
     return (
