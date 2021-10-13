@@ -15,7 +15,6 @@ import {
   NumberInputField,
   NumberInputStepper,
   Text,
-  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import { Config } from "../types/types";

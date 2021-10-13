@@ -1,6 +1,5 @@
 import { Box, Text, CircularProgress } from "@chakra-ui/react";
-import { differenceInMinutes, format, differenceInSeconds } from "date-fns";
-import useSound from "use-sound";
+import { differenceInMinutes, differenceInSeconds } from "date-fns";
 import ReactHowler from "react-howler";
 
 import React from "react";

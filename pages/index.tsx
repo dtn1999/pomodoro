@@ -7,26 +7,10 @@ import {
   Tab,
   TabPanel,
   Box,
-  CircularProgress,
-  Text,
-  Avatar,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   useDisclosure,
-  Button,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
 } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
-import { Howl, Howler } from "howler";
+import { Howler } from "howler";
 
 import type { NextPage } from "next";
 import React from "react";
