@@ -1,5 +1,5 @@
 import React from "react";
 
-export const ThemeExchangerProvider = React.createContext({
+export const ThemeExchanger = React.createContext({
   handlePrimaryColorChange: (c: string) => {},
 });

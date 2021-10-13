@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import React from "react";
+import { ThemeExchanger } from "../context/ThemeExchangerContext";
 
 const baseTheme = extendTheme({
   shadows: {
@@ -31,7 +32,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <ThemeExchanger.Provider value={{ handlePrimaryColorChange }}>
+        <Component {...pageProps} />
+      </ThemeExchanger.Provider>
     </ChakraProvider>
   );
 }
