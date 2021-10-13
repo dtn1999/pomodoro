@@ -9,8 +9,10 @@ This is a [Next.js](https://nextjs.org/) project showcasing the use of   <b>next
 First, run the development server:
 
 ```bash
+npm install
 npm run dev
 # or
+yarn
 yarn dev
 ```
 

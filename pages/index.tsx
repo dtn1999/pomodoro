@@ -27,7 +27,7 @@ const Home: NextPage = () => {
     break: 1,
     pomodoro: 1,
   });
-  const [activeTabIndex, setActiveTabIndex] = React.useState<number>(1);
+  const [activeTabIndex, setActiveTabIndex] = React.useState<number>(0);
   const handleTabsChange = React.useCallback(
     (index) => {
       setActiveTabIndex(index);
@@ -35,10 +35,10 @@ const Home: NextPage = () => {
     [activeTabIndex]
   );
   const handleTimerCompletion = React.useCallback(() => {
-    if (activeTabIndex === 1) {
-      setActiveTabIndex(2);
-    } else {
+    if (activeTabIndex === 0) {
       setActiveTabIndex(1);
+    } else {
+      setActiveTabIndex(2);
     }
     setTimeConfig({ ...timeConfig });
   }, [timeConfig]);
