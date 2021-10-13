@@ -1,4 +1,4 @@
-<div style="width:100%; display:flex; margin-bottom: 2rem;">
+<div style="width:100%; display:flex;">
 <image src="./public/main.png" width="50%" style="margin-right:10px"/>
 <image src="./public/config.png" width="50%"/>
 </div>
