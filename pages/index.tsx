@@ -43,6 +43,13 @@ const Home: NextPage = () => {
     break: 5,
     pomodoro: 25,
   });
+  const [activeTabIndex, setActiveTabIndex] = React.useState<1 | 2>(1);
+  const handleTabsChange = React.useCallback(
+    (index) => {
+      setActiveTabIndex(index);
+    },
+    [activeTabIndex]
+  );
   return (
     <>
       <Flex
@@ -58,20 +65,35 @@ const Home: NextPage = () => {
             pomodoro
           </Heading>
           {/*  render the tab panel */}
-          <Tabs variant="solid-rounded">
-            <TabList borderRadius="full" bgColor="#111426" p="0.25rem">
+          <Tabs
+            variant="solid-rounded"
+            isFitted
+            index={activeTabIndex}
+            onChange={handleTabsChange}
+          >
+            <TabList
+              borderRadius="full"
+              display="flex"
+              flexDir="row"
+              justifyContent="space-between"
+              bgColor="#111426"
+              p="0.25rem"
+            >
               <Tab
+                disabled={activeTabIndex !== 1}
                 fontSize="sm"
                 px="1.5rem"
                 _selected={{ color: "#111426", bg: "#F26D6D" }}
               >
                 pomodoro
               </Tab>
-              <Tab _selected={{ color: "#111426", bg: "#F26D6D" }}>
-                short break
-              </Tab>
-              <Tab _selected={{ color: "#111426", bg: "#F26D6D" }}>
-                long break
+              <Tab
+                disabled={activeTabIndex !== 2}
+                fontSize="sm"
+                px="1.5rem"
+                _selected={{ color: "#111426", bg: "#F26D6D" }}
+              >
+                break
               </Tab>
             </TabList>
             <TabPanels>
@@ -80,13 +102,10 @@ const Home: NextPage = () => {
                 justifyContent="center"
                 alignItems="center"
               >
-                <Timer duration={1} nextStep="pause" />
+                <Timer duration={timeConfig.pomodoro} nextStep="pause" />
               </TabPanel>
               <TabPanel>
-                <Timer duration={25} nextStep="pause" />
-              </TabPanel>
-              <TabPanel>
-                <Timer duration={25} nextStep="pause" />
+                <Timer duration={timeConfig.break} nextStep="pause" />
               </TabPanel>
             </TabPanels>
           </Tabs>
