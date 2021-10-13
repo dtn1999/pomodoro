@@ -21,8 +21,9 @@ import { Config } from "../types/types";
 Howler.mute(false);
 Howler.volume(1);
 
-const Home: NextPage = () => {
+const Home: NextPage = React.memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [timeConfig, setTimeConfig] = React.useState<Config>({
     break: 1,
     pomodoro: 1,
@@ -36,9 +37,9 @@ const Home: NextPage = () => {
   );
   const handleTimerCompletion = React.useCallback(() => {
     if (activeTabIndex === 0) {
-      setActiveTabIndex(1);
+      handleTabsChange(1);
     } else {
-      setActiveTabIndex(0);
+      handleTabsChange(0);
     }
     setTimeConfig({ ...timeConfig });
   }, [timeConfig]);
@@ -124,6 +125,6 @@ const Home: NextPage = () => {
       />
     </>
   );
-};
+});
 
 export default Home;
