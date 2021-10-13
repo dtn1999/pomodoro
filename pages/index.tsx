@@ -31,13 +31,18 @@ import { Howl, Howler } from "howler";
 import type { NextPage } from "next";
 import React from "react";
 import Timer from "../components/Timer";
+import SettingDialogModal from "../components/SettingDialogModal";
+import { Config } from "../types/types";
 
 Howler.mute(false);
 Howler.volume(1);
 
 const Home: NextPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [timeConfig, setTimeConfig] = React.useState<Config>({
+    break: 5,
+    pomodoro: 25,
+  });
   return (
     <>
       <Flex
@@ -92,108 +97,11 @@ const Home: NextPage = () => {
         </Flex>
       </Flex>
       {/*  Model  */}
-      <Modal
-        closeOnOverlayClick={true}
+      <SettingDialogModal
+        onApply={setTimeConfig}
         isOpen={isOpen}
         onClose={onClose}
-        isCentered
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Settings</ModalHeader>
-          <ModalCloseButton color="#737896" />
-          <ModalBody pb={6} borderTop="1px" borderTopColor="gray.100">
-            <Text
-              fontSize="large"
-              fontStyle="bold"
-              textTransform="uppercase"
-              letterSpacing="0.2rem"
-            >
-              Time (Minutes)
-            </Text>
-            <Flex direction="row" experimental_spaceX="2" py="2rem">
-              {/*  pomodoro */}
-              <Box>
-                <Text fontWeight="thin" color="#737896">
-                  pomodoro
-                </Text>
-                <NumberInput
-                  defaultValue={15}
-                  min={10}
-                  max={20}
-                  bgColor="#D0D9F2"
-                  borderRadius="md"
-                >
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </Box>
-              {/*  short break*/}
-              <Box>
-                <Text fontWeight="thin" color="#737896">
-                  short break{" "}
-                </Text>
-                <NumberInput
-                  defaultValue={15}
-                  min={10}
-                  max={20}
-                  bgColor="#D0D9F2"
-                  borderRadius="md"
-                >
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </Box>
-              {/*  long break */}
-              <Box>
-                <Text fontWeight="thin" color="#737896">
-                  long break
-                </Text>
-                <NumberInput
-                  defaultValue={15}
-                  min={10}
-                  max={20}
-                  bgColor="#D0D9F2"
-                  borderRadius="md"
-                >
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </Box>
-            </Flex>
-          </ModalBody>
-
-          <ModalFooter
-            position="absolute"
-            display="flex"
-            flexDir="row"
-            justifyContent="center"
-            bottom="-8"
-            left="0"
-            right="0"
-          >
-            <Button
-              colorScheme="blue"
-              mr={3}
-              textTransform="capitalize"
-              borderRadius="full"
-              px="4rem"
-              bgColor="#F26D6D"
-            >
-              apply
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      />
     </>
   );
 };
