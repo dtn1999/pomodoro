@@ -19,6 +19,7 @@ import {
   useRadioGroup,
 } from "@chakra-ui/react";
 import React from "react";
+import { ThemeExchanger } from "../context/ThemeExchangerContext";
 import { Config } from "../types/types";
 import ColorRadio from "./ColorRadio";
 
@@ -31,11 +32,16 @@ interface Props {
 
 const SettingDialogModal: React.FC<Props> = React.memo(
   ({ onApply, isOpen, onClose, initialValue }) => {
+    const { handlePrimaryColorChange } = React.useContext(ThemeExchanger);
+
     const [timeConfig, setTimeConfig] = React.useState<Config>({
       ...initialValue,
     });
+
     const handleApply = React.useCallback(() => {
       onApply({ ...timeConfig });
+      // set new primary color before closing the setting
+      handlePrimaryColorChange(timeConfig.color);
       onClose();
     }, [timeConfig]);
 
