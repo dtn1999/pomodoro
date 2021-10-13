@@ -1,6 +1,6 @@
 <p style="display:flex;">
-<image src="./public/main.png" width="50%" style="margin-right:10px"/>
-<image src="./public/config.png" width="50%"/>
+<image src="./public/main.png" style="margin-right:10px"/>
+<image src="./public/config.png" />
 </p>
 This is a [Next.js](https://nextjs.org/) project showcasing the use of   <b>nextjs</b> with <b>chakra UI</b> and also the configuration of next js to handle audio data.
 
