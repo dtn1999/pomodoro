@@ -51,10 +51,10 @@ const Home: NextPage = React.memo(() => {
         alignItems="center"
         width="100%"
         height="100Vh"
-        bgColor="#1F2440"
+        bgColor="bgColor"
       >
         <Flex direction="column" alignItems="center">
-          <Heading color="#D0D9F2" mb={10}>
+          <Heading color="text" mb={10}>
             pomodoro
           </Heading>
           {/*  render the tab panel */}
@@ -70,14 +70,14 @@ const Home: NextPage = React.memo(() => {
               display="flex"
               flexDir="row"
               justifyContent="space-between"
-              bgColor="#111426"
+              bgColor="dark"
               p="0.25rem"
             >
               <Tab
                 isDisabled={activeTabIndex !== 0}
                 fontSize="sm"
                 px="1.5rem"
-                _selected={{ color: "#111426", bg: "#F26D6D" }}
+                _selected={{ color: "dark", bg: "primary" }}
               >
                 pomodoro
               </Tab>
@@ -85,7 +85,7 @@ const Home: NextPage = React.memo(() => {
                 isDisabled={activeTabIndex !== 1}
                 fontSize="sm"
                 px="1.5rem"
-                _selected={{ color: "#111426", bg: "#F26D6D" }}
+                _selected={{ color: "dark", bg: "primary" }}
               >
                 break
               </Tab>
@@ -117,7 +117,7 @@ const Home: NextPage = React.memo(() => {
           </Tabs>
           {/*  settings icon */}
           <Box cursor="pointer" onClick={onOpen}>
-            <SettingsIcon w={6} h={6} color="#737896" />
+            <SettingsIcon w={6} h={6} color="darkText" />
           </Box>
         </Flex>
       </Flex>
