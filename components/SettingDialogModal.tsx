@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  HStack,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -15,9 +16,12 @@ import {
   NumberInputField,
   NumberInputStepper,
   Text,
+  useRadio,
+  useRadioGroup,
 } from "@chakra-ui/react";
 import React from "react";
 import { Config } from "../types/types";
+import ColorRadio from "./ColorRadio";
 
 interface Props {
   onApply: (config: Config) => void;
@@ -35,6 +39,15 @@ const SettingDialogModal: React.FC<Props> = React.memo(
       onApply({ ...timeConfig });
       onClose();
     }, [timeConfig]);
+
+    // Custom color selection
+    const options = ["#F26D6D", "#72F2F2", "#D080F2"];
+    const { getRootProps, getRadioProps } = useRadioGroup({
+      name: "framework",
+      defaultValue: "react",
+      onChange: console.log,
+    });
+    const group = getRootProps();
     return (
       <Modal
         closeOnOverlayClick={true}
@@ -98,6 +111,22 @@ const SettingDialogModal: React.FC<Props> = React.memo(
                   </NumberInputStepper>
                 </NumberInput>
               </Box>
+            </Flex>
+            {/*  color selection */}
+            <Flex flexDir="row" justifyContent="space-between" my="1rem">
+              <Text
+                fontWeight="medium"
+                color="darkKText"
+                letterSpacing="widest"
+              >
+                Color
+              </Text>
+              <HStack {...group}>
+                {options.map((value) => {
+                  const radio = getRadioProps({ value });
+                  return <ColorRadio key={value} radio={radio} color={value} />;
+                })}
+              </HStack>
             </Flex>
           </ModalBody>
 

@@ -1,4 +1,5 @@
 import { Box, useRadio } from "@chakra-ui/react";
+import { CheckIcon } from "@chakra-ui/icons";
 import React from "react";
 
 interface Props {
@@ -8,22 +9,26 @@ interface Props {
 const ColorRadio: React.FC<Props> = React.memo(({ radio, color }) => {
   const { getInputProps, getCheckboxProps } = useRadio(radio);
 
-  const input = getInputProps();
+  const inputProps = getInputProps();
   const checkbox = getCheckboxProps();
-
+  const { checked } = inputProps as any;
+  console.log();
   return (
     <Box as="label">
-      <input {...input} />
+      <input {...inputProps} />
       <Box
         {...checkbox}
         cursor="pointer"
+        width="10"
+        height="10"
         borderWidth="1px"
         borderRadius="full"
         bgColor={color}
         boxShadow="md"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
         _checked={{
-          bg: "teal.600",
-          color: "white",
           borderColor: "teal.600",
         }}
         _focus={{
@@ -31,7 +36,9 @@ const ColorRadio: React.FC<Props> = React.memo(({ radio, color }) => {
         }}
         px={5}
         py={3}
-      ></Box>
+      >
+        {checked && <CheckIcon />}
+      </Box>
     </Box>
   );
 });
