@@ -17,6 +17,11 @@ import React from "react";
 import Timer from "../components/Timer";
 import SettingDialogModal from "../components/SettingDialogModal";
 import { Config } from "../types/types";
+import {
+  defaultConfig,
+  loadUserAppConfig,
+  saveUserAppConfig,
+} from "../storage/storageUtils";
 
 Howler.mute(false);
 Howler.volume(1);
@@ -24,26 +29,50 @@ Howler.volume(1);
 const Home: NextPage = React.memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [timeConfig, setTimeConfig] = React.useState<Config>({
-    break: 5,
-    pomodoro: 25,
-    color: "#F26D6D",
-  });
+  const [userConfig, setUserConfig] = React.useState<Config>();
+
+  /*  use effects to load default user config */
+
+  React.useEffect(() => {
+    const initialConfig: Config = loadUserAppConfig();
+    setUserConfig({ ...initialConfig });
+    // on page unmount save config again
+    return () => {
+      saveUserAppConfig(userConfig || defaultConfig);
+    };
+  }, []);
+
+  /*  handler functions  */
+  // track the active tab index
   const [activeTabIndex, setActiveTabIndex] = React.useState<number>(0);
+
+  // programmatically change tab on completion
   const handleTabsChange = React.useCallback(
     (index) => {
       setActiveTabIndex(index);
     },
     [activeTabIndex]
   );
+
+  // on apply save changed to the localStorage
+  const handleSettingsApply = React.useCallback(
+    (newConfig: Config) => {
+      setUserConfig(newConfig);
+      // save changes to local storage
+      saveUserAppConfig(newConfig);
+    },
+    [userConfig]
+  );
+
+  // reset timer config each time a section is completed
   const handleTimerCompletion = React.useCallback(() => {
     if (activeTabIndex === 0) {
       handleTabsChange(1);
     } else {
       handleTabsChange(0);
     }
-    setTimeConfig({ ...timeConfig });
-  }, [timeConfig, activeTabIndex]);
+    setUserConfig(userConfig);
+  }, [userConfig, activeTabIndex]);
   return (
     <>
       <Flex
@@ -98,7 +127,7 @@ const Home: NextPage = React.memo(() => {
                 alignItems="center"
               >
                 <Timer
-                  duration={timeConfig.pomodoro}
+                  duration={userConfig?.pomodoro || defaultConfig.pomodoro}
                   nextStep="break"
                   onCompletion={handleTimerCompletion}
                 />
@@ -109,7 +138,7 @@ const Home: NextPage = React.memo(() => {
                 alignItems="center"
               >
                 <Timer
-                  duration={timeConfig.break}
+                  duration={userConfig?.break || defaultConfig.break}
                   nextStep="pomodoro"
                   onCompletion={handleTimerCompletion}
                 />
@@ -124,8 +153,8 @@ const Home: NextPage = React.memo(() => {
       </Flex>
       {/*  Model  */}
       <SettingDialogModal
-        initialValue={timeConfig}
-        onApply={setTimeConfig}
+        initialValue={userConfig || defaultConfig}
+        onApply={setUserConfig}
         isOpen={isOpen}
         onClose={onClose}
       />
