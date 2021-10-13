@@ -42,7 +42,7 @@ const Home: NextPage = React.memo(() => {
       handleTabsChange(0);
     }
     setTimeConfig({ ...timeConfig });
-  }, [timeConfig]);
+  }, [timeConfig, activeTabIndex]);
   return (
     <>
       <Flex
@@ -102,7 +102,11 @@ const Home: NextPage = React.memo(() => {
                   onCompletion={handleTimerCompletion}
                 />
               </TabPanel>
-              <TabPanel>
+              <TabPanel
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
                 <Timer
                   duration={timeConfig.break}
                   nextStep="pomodoro"
