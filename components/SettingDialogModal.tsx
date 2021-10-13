@@ -35,7 +35,7 @@ const SettingDialogModal: React.FC<Props> = React.memo(
     const handleApply = React.useCallback(() => {
       onApply({ ...timeConfig });
       onClose();
-    }, []);
+    }, [timeConfig]);
     return (
       <Modal
         closeOnOverlayClick={true}

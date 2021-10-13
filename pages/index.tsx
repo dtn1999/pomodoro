@@ -43,7 +43,7 @@ const Home: NextPage = () => {
     break: 5,
     pomodoro: 25,
   });
-  const [activeTabIndex, setActiveTabIndex] = React.useState<number>(1);
+  const [activeTabIndex, setActiveTabIndex] = React.useState<number>(0);
   const handleTabsChange = React.useCallback(
     (index) => {
       setActiveTabIndex(index);
@@ -87,7 +87,7 @@ const Home: NextPage = () => {
               p="0.25rem"
             >
               <Tab
-                disabled={activeTabIndex !== 1}
+                isDisabled={activeTabIndex !== 0}
                 fontSize="sm"
                 px="1.5rem"
                 _selected={{ color: "#111426", bg: "#F26D6D" }}
@@ -95,7 +95,7 @@ const Home: NextPage = () => {
                 pomodoro
               </Tab>
               <Tab
-                disabled={activeTabIndex !== 2}
+                isDisabled={activeTabIndex !== 1}
                 fontSize="sm"
                 px="1.5rem"
                 _selected={{ color: "#111426", bg: "#F26D6D" }}
