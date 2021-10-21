@@ -20,7 +20,8 @@
     "next-compose": "^0.0.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-howler": "^5.2.0"
+    "react-howler": "^5.2.0",
+    "source-code-pro": "github:adobe-fonts/source-code-pro#release"
   },
   "devDependencies": {
     "@types/react": "17.0.29",
