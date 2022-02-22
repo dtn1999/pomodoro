@@ -1,0 +1,12 @@
+.login {
+  max-width: 1000px;
+  padding: 100px 200px;
+  border: 5px solid black;
+  margin: auto;
+  background: green;
+}
+
+.textwidth {
+  width: 500px;
+  background: red;
+}
